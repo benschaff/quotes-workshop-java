@@ -69,11 +69,11 @@ require(
             ]
         ).config(['$routeProvider', function($routeProvider) {
 			$routeProvider.when('/', {
-                templateUrl: 'assets/javascripts/app/view/main.html',
+                templateUrl: 'assets/javascripts/view/main.html',
                 controller: 'MainController',
                 resolve: {}
             }).when('/symbols', {
-                templateUrl: 'assets/javascripts/app/view/symbols.html',
+                templateUrl: 'assets/javascripts/view/symbols.html',
                 controller: 'SymbolsController'
             }).otherwise({ redirectTo: '/' });
 		}]).run(function($rootScope) {
