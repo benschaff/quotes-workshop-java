@@ -54,7 +54,7 @@ require(
         './controller/SymbolsController',
         './service/ChartingService',
         './service/SymbolsService',
-        './service/QuotesService'
+        './service/VCardService'
     ],
 	function (angular) {
         angular.module('app',
@@ -65,7 +65,7 @@ require(
                 'app.controllers',
                 'ChartingService',
                 'SymbolsService',
-                'QuotesService'
+                'VCardService'
             ]
         ).config(['$routeProvider', function($routeProvider) {
 			$routeProvider.when('/', {

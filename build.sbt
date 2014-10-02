@@ -1,10 +1,12 @@
-import play.PlayJava
+import play.{PlayImport, PlayJava}
 
 name := "quotes-workshop-java"
 
 version := "1.0.0"
 
 libraryDependencies ++= Seq(
+  PlayImport.javaWs,
+  PlayImport.cache,
   "org.webjars" %% "webjars-play" % "2.3.0-2",
   "org.webjars" % "requirejs" % "2.1.14-3",
   "org.webjars" % "jquery" % "1.11.1",

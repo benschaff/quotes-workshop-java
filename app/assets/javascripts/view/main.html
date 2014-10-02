@@ -7,14 +7,14 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-2">
         <div class="panel panel-primary" data-ng-show="demo.symbols">
             <!-- Default panel contents -->
             <div class="panel-heading">Symbols</div>
             <!-- List group -->
             <ul class="list-group">
                 <li class="list-group-item" data-ng-repeat="symbol in demo.symbols">
-                    <a href="javascript:;" data-ng-click="changeSymbol(symbol)">{{symbol.name}}&nbsp;[{{symbol.symbol}}]</a>
+                    <a href="javascript:;" data-ng-click="changeSymbol(symbol)">{{symbol.Name}}&nbsp;[{{symbol.Symbol}}]</a>
                 </li>
             </ul>
         </div>
@@ -25,6 +25,12 @@
             <div class="panel-body" data-ng-if="currentSymbolChartData">
                 <chart value="currentSymbolChartData" type="line" height="400"></chart>
             </div>
+        </div>
+    </div>
+
+    <div class="col-xs-4">
+        <div class="panel panel-primary" data-ng-show="vcard">
+            <div class="panel-body" ng-bind-html="vcard"></div>
         </div>
     </div>
 </div>

@@ -1,15 +1,18 @@
 define(['angular'], function(angular) {
 
-    angular.module('app.controllers').controller('MainController', [ '$rootScope', '$scope', '$filter', 'Last30DaysService', function($rootScope, $scope, $filter, Last30DaysService) {
+    angular.module('app.controllers').controller('MainController', [ '$rootScope', '$scope', '$filter', '$sce', 'Last30DaysService', 'VCardService', function($rootScope, $scope, $filter, $sce, Last30DaysService, VCardService) {
         $rootScope.action = 'home';
 
-        $scope.demo = [
-            { 'name': 'Google Inc', 'symbol': 'GOOG' }
-        ];
+        $scope.demo = {
+            symbols: [
+                { 'Name': 'Google Inc', 'Symbol': 'GOOG' },
+                { 'Name': 'Oracle Corp', 'Symbol': 'ORCL' }
+            ]
+        };
 
         $scope.changeSymbol = function(symbol) {
             Last30DaysService.get(
-                { symbol: symbol.symbol },
+                { symbol: symbol.Symbol },
                 function(chartData) {
                     var categories = [];
                     $.each(chartData.Dates, function(index, date) {
@@ -48,7 +51,19 @@ define(['angular'], function(angular) {
                     $rootScope.setMessage({ type: 'error', text: 'An error occurred. Please try again later' });
                 }
             );
+
+            VCardService(symbol).success(function(html) {
+                var $wikiDOM = $("<document>" + html + "</document>");
+
+                $scope.vcard = $sce.trustAsHtml($wikiDOM.find('.infobox').html());
+            }).error(function(error) {
+                console.log(error);
+
+                $rootScope.setMessage({ type: 'error', text: 'An error occurred. Please try again later' });
+            });
         };
+
+        $scope.changeSymbol($scope.demo.symbols[0]);
     }]);
 
 });
